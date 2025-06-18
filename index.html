@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GOWINX - Powering the Future</title>
+  <link rel="stylesheet" href="i.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    /* Basic reset */
+    body, h1, h2, h3, p, a, button {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Header styles */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px; /* added some horizontal padding to balance spacing */
+      background-color: #333;
+      color: white;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1.5px; /* slightly spaced letters for better look */
+    }
+
+    #menu-toggle {
+      display: none; /* Hidden by default */
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    #main-nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      padding: 10px 0;
+      transition: color 0.3s ease;
+    }
+
+    #main-nav a:hover {
+      color: #00aaff;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Hidden off-screen */
+      width: 250px;
+      height: 100vh;
+      background-color: #444;
+      transition: left 0.3s ease-in-out;
+      padding-top: 60px; /* Space for header */
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0; /* Show sidebar */
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      border-bottom: 1px solid #555;
+    }
+
+    .sidebar a:hover {
+      background-color: #555;
+    }
+
+    /* Responsive styles */
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      #menu-toggle {
+        display: block;
+      }
+      #main-nav {
+        display: none;
+      }
+    }
+
+    /* Desktop styles */
+    @media (min-width: 769px) {
+      #menu-toggle {
+        display: none;
+      }
+      #main-nav {
+        display: flex;
+        align-items: center;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">GOWINX</div>
+    <button id="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" aria-controls="sidebar">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="main-nav">
+      <a href="#about">About</a>
+      <a href="#services">Solutions</a>
+      <a href="#founder">Founder</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <nav id="sidebar" class="sidebar" role="navigation" aria-label="Mobile Navigation">
+    <a href="#about" tabindex="0">About</a>
+    <a href="#services" tabindex="0">Solutions</a>
+    <a href="#founder" tabindex="0">Founder</a>
+    <a href="#contact" tabindex="0">Contact</a>
+    <a href="#location" tabindex="0">Location</a>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>GOWINX</h1>
+      <p>Innovating AI to Power the Future</p>
+      <a href="#services" class="btn">Explore Solutions</a>
+    </div>
+  </section>
+
+  <section id="about" class="section about-section">
+    <h2>About GOWINX</h2>
+    <p>GOWINX is pioneering the future of AI and software development — crafting intelligent solutions that empower humanity.</p>
+  </section>
+
+  <section id="services" class="section services-section">
+    <h2>Our AI Solutions</h2>
+    <div class="cards">
+      <a href="agentatic-ai.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="ai agent.webm" type="video/mp4" />
+        </video>
+        <h3>Agentatic AI</h3>
+        <p>Autonomous agents to automate complex decision-making.</p>
+      </a>
+
+      <a href="software-automation.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="aumachine.webm" type="video/mp4" />
+        </video>
+        <h3>Software Automation</h3>
+        <p>Streamlining workflows for peak efficiency.</p>
+      </a>
+
+      <a href="ai-security.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="ai security.webm" type="video/mp4" />
+        </video>
+        <h3>AI Security</h3>
+        <p>Next-gen security powered by artificial intelligence.</p>
+      </a>
+
+      <a href="predictive-analytics.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="pridictiblity.webm" type="video/mp4" />
+        </video>
+        <h3>Predictive Analytics</h3>
+        <p>Data-driven insights for smarter business decisions.</p>
+      </a>
+
+      <a href="retail-customer-ai.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="retail.webm" type="video/mp4" />
+        </video>
+        <h3>Retail & Customer AI</h3>
+        <p>Personalized shopping experiences and virtual assistants.</p>
+      </a>
+
+      <a href="environmental-monitoring.html" target="_blank" class="card">
+        <video autoplay muted loop width="100%" style="border-radius: 10px; margin-bottom: 10px;">
+          <source src="enviranmental.webm" type="video/mp4" />
+        </video>
+        <h3>Environmental Monitoring</h3>
+        <p>AI-based pollution tracking and climate data modeling.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="founder" class="section founder-section">
+    <h2>Meet the Founder</h2>
+    <div class="founder-profile">
+      <img src="HII gowin.jpg" alt="Govinda Pandey" />
+      <div>
+        <h3>Govinda Pandey (GOWIN)</h3>
+        <p>A visionary entrepreneur with a mission to revolutionize AI technology worldwide.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-section">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section id="location" class="section location-section">
+    <h2>Our Location</h2>
+    <p>Visit our innovation hub at:</p>
+    <p><strong>ISMT College, Yogikuti, Butwal, Nepal</strong></p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.3004079698477!2d83.4464013752924!3d27.695118724436315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399799f69b9947bb%3A0xf2399a2301c5ed2d!2sISMT%20College%20Butwal!5e0!3m2!1sen!2snp!4v1716029209651!5m2!1sen!2snp"
+        width="600"
+        height="350"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="ISMT Butwal Location"
+      ></iframe>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=100059985575700" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@Technicalstudy-t8r" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.linkedin.com/in/govinda-pandey-35032a285/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.instagram.com/gowin2306/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2024 GOWINX. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+      sidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking/tapping outside sidebar on mobile
+    document.addEventListener('click', (event) => {
+      const isClickInsideSidebar = sidebar.contains(event.target);
+      const isClickOnToggle = menuToggle.contains(event.target);
+
+      if (!isClickInsideSidebar && !isClickOnToggle && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    const form = document.querySelector('#contact form');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const name = form.querySelector('input[type="text"]').value.trim();
+  const email = form.querySelector('input[type="email"]').value.trim();
+  const message = form.querySelector('textarea').value.trim();
+
+  if (!name || !email || !message) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  try {
+    const response = await fetch('http://localhost:3000/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, message }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message || 'Message sent successfully!');
+      form.reset();
+    } else {
+      alert(data.error || 'Failed to send message.');
+    }
+  } catch (error) {
+    alert('Error connecting to the server.');
+    console.error(error);
+  }
+});
+
+  </script>
+</body>
+</html>

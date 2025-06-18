@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentatic - GOWINX</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero .text {
+      flex: 1;
+    }
+
+    .hero .text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #007acc;
+    }
+
+    .hero .text p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .hero .video {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero .video video {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 80px;
+      gap: 40px;
+    }
+
+    .section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .section .image,
+    .section .description {
+      flex: 1;
+    }
+
+    .section img,
+    .section video {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .section .description h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .section .description p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+
+    /* Dark mode toggle button with icon */
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dark-mode-toggle svg {
+      width: 32px;
+      height: 32px;
+      fill: #007acc;
+      transition: fill 0.3s;
+    }
+
+    body.dark-mode .dark-mode-toggle svg {
+      fill: #f5f5f5;
+    }
+
+    /* Main tab arrow button on left center */
+    .main-tab-button {
+      position: fixed;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: #28a745;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      z-index: 1000;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .main-tab-button:hover {
+      background: #218838;
+    }
+
+    .main-tab-button svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Dark mode toggle with half sun/half moon icon -->
+  <button class="dark-mode-toggle" aria-label="Toggle Dark Mode" onclick="toggleDarkMode()">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <mask id="moon-mask">
+          <rect width="64" height="64" fill="white"/>
+          <circle cx="40" cy="32" r="16" fill="black"/>
+        </mask>
+      </defs>
+      <!-- Sun half -->
+      <circle cx="32" cy="32" r="20" fill="#FFC107"/>
+      <!-- Moon half masked -->
+      <circle cx="32" cy="32" r="20" fill="#121212" mask="url(#moon-mask)"/>
+    </svg>
+  </button>
+
+  <!-- Go to main tab arrow button -->
+  <a href="money.html" class="main-tab-button" title="Go to Main Tab">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M14 7l-5 5 5 5V7z"/>
+    </svg>
+  </a>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero" id="mainTab">
+      <div class="text">
+        <h1>Welcome to Agentatic</h1>
+        <p>Agentatic is a revolutionary approach in artificial intelligence where autonomous agents learn, decide, and act on behalf of users, enabling adaptive and intelligent systems for real-world applications.</p>
+      </div>
+      <div class="video">
+        <video controls>
+          <source src="agentic means.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="image">
+        <img src="May 18, 2025, 09_46_35 AM.png" alt="Agentatic Real Time Decisions" />
+      </div>
+      <div class="description">
+        <h2>Real-Time Decision Making</h2>
+        <p>Agentatic systems dynamically respond to environmental changes by making intelligent decisions in real-time, enhancing automation and precision.</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="image">
+        <img src="si.webp" alt="Lifecycle of Agentatic" />
+      </div>
+      <div class="description">
+        <h2>Lifecycle of an AI Agent</h2>
+        <p>From sensing and perception to decision-making and learning, Agentatic evolves continually, adapting to new data and optimizing performance autonomously.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="image">
+        <video controls autoplay muted loop>
+          <source src="animated.webm" type="video/mp4" />
+        </video>
+      </div>
+      <div class="description">
+        <h2>Agent in Action</h2>
+        <p>See how intelligent agents operate within dynamic environments to make proactive decisions and assist users in achieving complex tasks effortlessly.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 GOWINX | All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Security - GOWINX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0d1117;
+      color: #c9d1d9;
+      overflow-x: hidden;
+    }
+
+    /* Sticky top header with brand name */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: saturate(180%) blur(10px);
+      z-index: 1000;
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #00aaff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      user-select: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 960px;
+      margin: 100px auto 50px;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    /* Gradient Animated Heading */
+    h1 {
+      background: linear-gradient(270deg, #0077cc, #00aaff, #0077cc);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 12s ease infinite;
+      font-weight: 900;
+      font-size: 3rem;
+      margin: 50px 0 30px;
+      text-align: center;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Background video styling */
+    .bg-video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      z-index: -2;
+    }
+    .bg-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.3);
+    }
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(135deg, rgba(0,170,255,0.4), rgba(0,0,0,0.7));
+      z-index: -1;
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #00aaff;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      z-index: 1100;
+    }
+    .dark-mode-toggle:hover svg {
+      filter: drop-shadow(0 0 8px #66aaff);
+      transform: scale(1.2);
+    }
+    .dark-mode-toggle svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      fill: currentColor;
+    }
+
+    /* Main video section */
+    .animation-video-container {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 170, 255, 0.5);
+    }
+    .animation-video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .animation-video-container:hover {
+      box-shadow: 0 12px 40px rgba(0, 255, 255, 0.8);
+    }
+
+    .video-explanation {
+      max-width: 700px;
+      margin: 0 auto 60px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #a1b1c2;
+      text-align: center;
+    }
+
+    /* Image + text sections */
+    .section {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: 70px;
+      flex-wrap: wrap;
+    }
+
+    .section img {
+      width: 320px;
+      height: 220px;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 8px 30px rgba(0,170,255,0.4);
+      animation: drift 8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .section .text {
+      flex: 1 1 300px;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    .section .text p {
+      margin: 0 0 10px;
+    }
+
+    .section figcaption {
+      font-size: 0.85rem;
+      color: #6e7a8a;
+      font-style: italic;
+    }
+
+    /* Drift animation */
+    @keyframes drift {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(8px, -6px); }
+      50% { transform: translate(0, -12px); }
+      75% { transform: translate(-8px, -6px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin: 40px auto 20px;
+      color: #5f7c99;
+      font-size: 0.9rem;
+    }
+    footer hr {
+      margin: 30px auto;
+      border: 0.5px solid #223344;
+      width: 70%;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #010409;
+      color: #8b949e;
+    }
+    body.dark-mode .section .text {
+      color: #8b949e;
+    }
+    body.dark-mode footer {
+      color: #445566;
+    }
+    body.dark-mode .video-explanation {
+      color: #8899aa;
+    }
+
+    /* NEW: Link Button Styling */
+    .open-money-button {
+      display: block;
+      margin: 0 auto 40px;
+      padding: 12px 24px;
+      background-color: #00aaff;
+      color: #0d1117;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,170,255,0.4);
+      transition: background 0.3s ease, transform 0.2s ease;
+      width: fit-content;
+    }
+
+    .open-money-button:hover {
+      background-color: #0099dd;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>GOWINX</header>
+
+  <div class="bg-video-container">
+    <video autoplay muted loop playsinline>
+      <source src="road.webm" type="video/mp4" />
+    </video>
+  </div>
+  <div class="bg-overlay"></div>
+
+  <button class="dark-mode-toggle" aria-label="Toggle dark mode" onclick="toggleDarkMode()">
+    <svg viewBox="0 0 24 24">
+      <defs>
+        <mask id="moon-mask">
+          <rect width="24" height="24" fill="white"/>
+          <circle cx="14" cy="10" r="6" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="12" cy="12" r="9" fill="currentColor" mask="url(#moon-mask)"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </g>
+    </svg>
+  </button>
+
+  <div class="container">
+    <h1>AI Security</h1>
+
+    <!-- NEW: Button to open money.html in new tab -->
+    <a href="money.html" class="open-money-button" target="_blank">Main page</a>
+
+    <div class="animation-video-container">
+      <video autoplay muted loop playsinline>
+        <source src="degital but.webm" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="video-explanation fade-in">
+      <p>Artificial Intelligence (AI) revolutionizes cybersecurity by continuously learning and adapting to evolving threats. Through advanced pattern recognition and rapid automated responses, AI helps protect critical infrastructure and personal data with unparalleled speed and precision.</p>
+      <p>Below, explore how AI security integrates real-time monitoring, predictive analytics, and automated countermeasures to build a robust defense against cyberattacks.</p>
+    </div>
+
+    <div class="section fade-in">
+      <img src="women.avif" alt="AI Threat Detection" />
+      <div class="text">
+        <p><strong>Figure 1:</strong> This image illustrates how AI monitors large-scale data to detect unusual activity in real-time. Such monitoring can identify malware, phishing attempts, or brute-force attacks before they escalate.</p>
+        <figcaption>AI-enabled system monitoring threat indicators.</figcaption>
+      </div>
+    </div>
+
+    <div class="section fade-in">
+      <img src="istockphoto-1193826978-2048x2048.jpg" alt="AI Security Framework" />
+      <div class="text">
+        <p><strong>Figure 2:</strong> This architecture diagram shows how various AI components like neural networks, decision trees, and predictive analytics work together to ensure complete protection of digital systems.</p>
+        <figcaption>Framework of AI-powered cybersecurity defense model.</figcaption>
+      </div>
+    </div>
+
+    <div class="section fade-in">
+      <img src="ais.jpeg" alt="Automated Response" />
+      <div class="text">
+        <p><strong>Figure 3:</strong> AI automates incident response by isolating threats and neutralizing them without human intervention. This improves reaction time and ensures continuous uptime for critical systems.</p>
+        <figcaption>Instant threat isolation and countermeasure action by AI.</figcaption>
+      </div>
+    </div>
+
+    <footer>
+      <hr />
+      <p>&copy; 2025 GOWINX Innovations. All rights reserved.</p>
+      <p><em>Empowering the future with secure and intelligent AI solutions.</em></p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function handleScrollFade() {
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const windowBottom = window.innerHeight + window.scrollY;
+
+      fadeEls.forEach(el => {
+        const elTop = el.getBoundingClientRect().top + window.scrollY;
+        if (windowBottom > elTop + el.offsetHeight / 4) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScrollFade);
+    window.addEventListener('load', handleScrollFade);
+  </script>
+</body>
+</html>

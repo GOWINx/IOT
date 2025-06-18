@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Environmental Monitoring - GOWINX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 20px;
+      background-color: #f0f8ff;
+      color: #222;
+      line-height: 1.6;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 15px;
+    }
+    h1 {
+      color: #0077cc;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    figure {
+      margin: 30px 0;
+      text-align: center;
+    }
+    figcaption {
+      font-style: italic;
+      color: #555;
+      margin-top: 8px;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: 700;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+    /* Chart container */
+    #pollution-chart {
+      width: 100%;
+      height: 300px;
+      margin: 40px 0;
+    }
+    /* Live pollution index widget */
+    .pollution-widget {
+      background: #d9f0ff;
+      border: 1px solid #0077cc;
+      border-radius: 10px;
+      padding: 15px 20px;
+      max-width: 350px;
+      margin: 30px auto;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 119, 204, 0.2);
+    }
+    .pollution-widget h3 {
+      margin-bottom: 10px;
+      color: #005999;
+    }
+    .pollution-index {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #004080;
+      margin-bottom: 5px;
+    }
+    /* FAQ Accordion */
+    .faq-section {
+      margin: 50px 0;
+    }
+    .faq-item {
+      margin-bottom: 10px;
+      border: 1px solid #0077cc;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .faq-question {
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      padding: 12px 15px;
+      font-weight: 700;
+      user-select: none;
+    }
+    .faq-answer {
+      background-color: #e1f0ff;
+      padding: 15px;
+      display: none;
+      color: #222;
+      font-weight: 400;
+    }
+    /* Video container */
+    .video-section {
+      text-align: center;
+      margin: 50px 0;
+    }
+    video {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    /* Call to action */
+    .cta-section {
+      background-color: #0077cc;
+      color: white;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      margin: 60px 0 30px;
+    }
+    .cta-section h2 {
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .cta-section a {
+      background: white;
+      color: #0077cc;
+      font-weight: 700;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+    .cta-section a:hover {
+      background-color: #005999;
+      color: white;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        margin: 15px;
+      }
+      .pollution-widget {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Environmental Monitoring</h1>
+
+  <p>
+    Our AI-based Environmental Monitoring solutions use real-time data and advanced analytics to track pollution levels, climate changes, and ecosystem health.
+  </p>
+
+  <figure>
+    <img src="pani.jpeg" alt="Pollution Tracking" />
+    <figcaption>Figure 1: Real-time pollution tracking using AI sensors.</figcaption>
+  </figure>
+
+  <p>
+    By integrating satellite data, IoT sensors, and machine learning algorithms, we provide actionable insights for governments and organizations to take proactive environmental measures.
+  </p>
+
+  <figure>
+    <img src="robot.jpeg" alt="Climate Data Modeling" />
+    <figcaption>Figure 2: AI-driven climate data modeling for future predictions.</figcaption>
+  </figure>
+
+  <p>
+    These solutions help in predicting environmental hazards, optimizing resource usage, and supporting sustainable development goals worldwide.
+  </p>
+
+  <!-- New Feature: Live Pollution Index Widget -->
+  <div class="pollution-widget" aria-live="polite" aria-atomic="true">
+    <h3>Current Pollution Index</h3>
+    <div class="pollution-index" id="pollutionIndex">--</div>
+    <div>Air Quality: <span id="airQualityDesc">Loading...</span></div>
+  </div>
+
+  <!-- New Feature: Pollution Levels Chart -->
+  <canvas id="pollution-chart" aria-label="Pollution levels over the last 7 days" role="img"></canvas>
+
+  <!-- New Feature: FAQ Accordion -->
+  <section class="faq-section" aria-label="Frequently Asked Questions">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq1">How does AI track pollution?</button>
+      <div id="faq1" class="faq-answer" role="region" aria-hidden="true">
+        AI uses sensors, satellite data, and machine learning to analyze air and water quality in real-time.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq2">What types of pollution can be monitored?</button>
+      <div id="faq2" class="faq-answer" role="region" aria-hidden="true">
+        Our system monitors air, water, soil pollution, and greenhouse gas emissions.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" aria-expanded="false" aria-controls="faq3">Can this technology predict environmental hazards?</button>
+      <div id="faq3" class="faq-answer" role="region" aria-hidden="true">
+        Yes, by analyzing patterns in data, the AI predicts potential hazards such as floods, droughts, and pollution spikes.
+      </div>
+    </div>
+  </section>
+
+  <!-- New Feature: Embedded Video -->
+  <section class="video-section">
+    <h2>How AI Helps Environmental Monitoring</h2>
+    <video controls preload="metadata" width="720" height="405" aria-describedby="videoDesc">
+      <source src="environment.mp4" type="video/mp4" />
+      Sorry, your browser does not support embedded videos.
+    </video>
+    <p id="videoDesc" style="max-width: 720px; margin: 10px auto; font-style: italic; color: #555;">
+      This video explains how AI technologies are transforming environmental monitoring by integrating data from multiple sources.
+    </p>
+  </section>
+
+  <!-- New Feature: Call to Action -->
+  <section class="cta-section" aria-label="Contact experts for environmental monitoring solutions">
+    <h2>Interested in Our Environmental AI Solutions?</h2>
+    <p>Contact our experts for a custom consultation and see how GOWINX can help your organization.</p>
+    <a href="contact.html">Get in Touch</a>
+  </section>
+
+  <a href="money.html" class="back-link">← Back to Home</a>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // FAQ accordion toggle
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !expanded);
+        const answer = button.nextElementSibling;
+        if (!expanded) {
+          answer.style.display = 'block';
+          answer.setAttribute('aria-hidden', 'false');
+        } else {
+          answer.style.display = 'none';
+          answer.setAttribute('aria-hidden', 'true');
+        }
+      });
+    });
+
+    // Pollution index live update simulation
+    function updatePollutionIndex() {
+      const pollutionIndex = Math.floor(Math.random() * 300); // Simulated AQI
+      const desc = pollutionIndex <= 50 ? 'Good' :
+                   pollutionIndex <= 100 ? 'Moderate' :
+                   pollutionIndex <= 150 ? 'Unhealthy for Sensitive Groups' :
+                   pollutionIndex <= 200 ? 'Unhealthy' :
+                   pollutionIndex <= 300 ? 'Very Unhealthy' : 'Hazardous';
+
+      document.getElementById('pollutionIndex').textContent = pollutionIndex;
+      document.getElementById('airQualityDesc').textContent = desc;
+    }
+    updatePollutionIndex();
+    setInterval(updatePollutionIndex, 10000); // update every 10 seconds
+
+    // Pollution levels chart setup
+    const ctx = document.getElementById('pollution-chart').getContext('2d');
+    const pollutionChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', 'Yesterday', 'Today'],
+        datasets: [{
+          label: 'Pollution Index (AQI)',
+          data: [55, 65, 80, 72, 90, 110, 95],
+          borderColor: '#0077cc',
+          backgroundColor: 'rgba(0,119,204,0.2)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#005999',
+          borderWidth: 3
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 300,
+            title: {
+              display: true,
+              text: 'AQI'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Days'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#0077cc',
+              font: { weight: 'bold' }
+            }
+          },
+          tooltip: {
+            mode: 'index',
+            intersect: false
+          }
+        },
+        interaction: {
+          mode: 'nearest',
+          axis: 'x',
+          intersect: false
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Software Automation - GOWINX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .bg-video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -2;
+    }
+
+    .bg-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4);
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.35);
+      z-index: -1;
+    }
+
+    body {
+      background-color: transparent;
+      color: #222;
+      line-height: 1.6;
+      margin: 40px;
+    }
+
+    body.dark-mode {
+      color: #eee;
+      background-color: transparent;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #0077cc;
+      margin-bottom: 20px;
+    }
+    body.dark-mode h1 {
+      color: #66aaff;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    body.dark-mode img {
+      box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+    }
+
+    figure {
+      margin: 30px 0;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    figcaption {
+      font-style: italic;
+      color: #666;
+      margin-top: 8px;
+    }
+    body.dark-mode figcaption {
+      color: #aaa;
+    }
+
+    .animation-video {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .back-arrow {
+      position: fixed;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      color: #0077cc;
+      transition: color 0.3s;
+      z-index: 1000;
+      padding: 6px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-arrow:hover {
+      color: #004a99;
+      background-color: rgba(0, 119, 204, 0.1);
+    }
+    body.dark-mode .back-arrow {
+      color: #66aaff;
+    }
+    body.dark-mode .back-arrow:hover {
+      color: #99cfff;
+      background-color: rgba(102, 170, 255, 0.2);
+    }
+
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dark-mode-toggle svg {
+      width: 28px;
+      height: 28px;
+      fill: #0077cc;
+      transition: fill 0.3s;
+    }
+    body.dark-mode .dark-mode-toggle svg {
+      fill: #ffcc33;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      user-select: none;
+      position: relative;
+      z-index: 1;
+    }
+    body.dark-mode footer {
+      color: #aaa;
+      border-top-color: #444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-video-container">
+    <video autoplay muted loop playsinline>
+      <source src="back.webm" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="bg-overlay"></div>
+
+  <a href="money.html" class="back-arrow" aria-label="Go to main tab">
+    &#8592;
+  </a>
+
+  <button class="dark-mode-toggle" aria-label="Toggle dark mode" onclick="toggleDarkMode()">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <mask id="moon-mask">
+          <rect x="0" y="0" width="24" height="24" fill="white"/>
+          <circle cx="14" cy="10" r="6" fill="black"/>
+        </mask>
+      </defs>
+      <circle cx="12" cy="12" r="9" fill="currentColor" mask="url(#moon-mask)"/>
+      <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="1" x2="12" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="23" />
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+        <line x1="1" y1="12" x2="3" y2="12" />
+        <line x1="21" y1="12" x2="23" y2="12" />
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+      </g>
+    </svg>
+  </button>
+
+  <div class="content">
+    <h1>Software Automation</h1>
+    <p>
+      Software Automation involves using tools and technologies to automate repetitive and complex workflows in software development and IT operations.
+      It helps increase productivity, reduce human error, and accelerate delivery cycles.
+    </p>
+
+    <video class="animation-video" autoplay muted loop playsinline>
+      <source src="social media.webm" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <p>
+      The animation above illustrates how modern software automation tools integrate with platforms like GitHub, Jenkins, and cloud services to handle tasks such as automated testing, building, and deployment.
+      It highlights the streamlined process from code writing to production, minimizing manual steps and enabling faster delivery.
+    </p>
+
+    <figure>
+      <img src="program.jpg" alt="Software Automation Workflow" />
+      <figcaption>Figure 1: Example of a software automation workflow pipeline.</figcaption>
+    </figure>
+
+    <p>
+      Workflow pipelines visually represent how software flows through different stages, from development to release. With automation, tasks such as code compilation, security scanning, and deployment can be automatically triggered, reducing the time between development and deployment.
+    </p>
+
+    <figure>
+      <img src="15.png" alt="Automation Tools Examples" />
+      <figcaption>Figure 2: Popular software automation tools in the industry.</figcaption>
+    </figure>
+
+    <p>
+      Tools like GitLab CI/CD, Docker, Kubernetes, and Ansible have become essential in today's DevOps pipelines. They not only ensure consistency across environments but also improve collaboration between development and operations teams.
+    </p>
+
+    <footer>
+      &copy; 2025 GOWINX | All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
